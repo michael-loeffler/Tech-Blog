@@ -58,7 +58,7 @@ router.put('/:id', async (req, res) => {
         },
       }
     )
-    res.status(200).json(categoryData); // may want to find a better thing to display here
+    res.status(200).json({ message: `Category name updated to ${req.body.category_name}`}); 
   } catch (err) {
     res.status(400).json(err);
   }
@@ -78,7 +78,7 @@ router.delete('/:id', async (req, res) => {
       return;
     }
 
-    res.status(200).json(categoryData); // may want to find a better thing to display here
+    res.status(200).json({ message: `Category #${req.params.id} successfully deleted`}); 
   } catch (err) {
     res.status(500).json(err);
   }

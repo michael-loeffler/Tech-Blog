@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
   // be sure to include its associated Category and Tag data
   try {
     const productData = await Product.findAll({
-      include: [{ model: Category }, { model: Tag }], // ask about how product_tag should look? I think mine repeats due to reciprocal many-to-many associations
+      include: [{ model: Category }, { model: Tag }],
     });
     res.status(200).json(productData);
   } catch (err) {
@@ -121,11 +121,11 @@ router.delete('/:id', async (req, res) => {
     });
 
     if (!productData) {
-      res.status(404).json({ message: 'No product found with this id!' });
+      res.status(404).json({ message: `Product #${req.params.id} successfully deleted` });
       return;
     }
 
-    res.status(200).json(productData); // may want to find a better thing to display here
+    res.status(200).json(productData);
   } catch (err) {
     res.status(500).json(err);
   }
