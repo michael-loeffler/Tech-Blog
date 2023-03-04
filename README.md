@@ -4,9 +4,9 @@
 
 ## Description
     
-The E-commerce Back End project is a command-line application that allows a user to  This application serves as a 
+The E-commerce Back End project is meant to serve as the back-end functionality for an e-commerce website. It uses Sequelize to connect the Express.js API to a MySQL database containing data about various products sold on the site. This connection allows a back-end user to, using the various API endpoints, 1) view all categories, products, or tags in the database, 2) view an individual category, product, or tag, 3) create a new category, product, or tag, 4) update an existing category, product, or tag, and 5) delete an existing category, product, or tag.
 
-I was motivated to create this application because  Additionally, building this application was interesting for me because 
+I was motivated to create this application because it is important to be able to connect data stored in a database with the front end of a website, while organizing the data using object-relational mapping to make the data easily interpreted and utilized by the front end so it can be displayed for the end user (consumer).
 
 Through working on this project, I have learned how to use Sequelize and dotenv to connect an Express API to a MySQL database and create Models for SQL tables within JavaScript. Some of the biggest points of learning include:
 
@@ -42,7 +42,7 @@ Through working on this project, I have learned how to use Sequelize and dotenv 
    ```
 4. Create a .env file with the following information
    ```sh
-   DB_NAME='company_db'
+   DB_NAME='ecommerce_db'
    DB_USER='root'
    DB_PASSWORD='your MySQL password here'
    ```
@@ -62,7 +62,7 @@ Through working on this project, I have learned how to use Sequelize and dotenv 
     
 ## Usage
     
-The E-commerce Back End project functions as a command-line application. After following the installation instructions above, whenever users want to view or edit company data stored in the database, they simply invoke the application using the command "node index.js". The index.js file contains only one function declaration, the displayMenuOptions function, which will run immediately when the application is invoked. The Inquirer package will prompt the user with the various action options available to them, and when one is selected, the associated method stored in the Query class will be called, followed by another call of the displayMenuOptions function to provide the user with an opportunity to perform another action. All query methods are stored in the Query class and imported as a module in order to keep the index.js file brief and organized. If the action selected by the user requires input, the Inquirer package will gather all pertinent information from the user for that action, and then asynchronous queries will use the information collected to perform the associated action in MySQL. This is done using prepared statements to secure the database against SQL injection attacks. Sometimes, the Inquirer questions need information stored in the database to populate options for a particular question. When this is the case, asynchronous queries are run before the Inquirer package in order to provide choices for a list inquiry. For actions that simply pull and display data from the database, the console.table package is used to display the data in a visually friendly format. All queries are called asynchronously to prevent multiple queries from running simultaneously. It was necessary to prevent them from running simultaneously because often queries relied on the results of a previous query in order to run properly. Finally, when they are ready to exit, the user can select the "Quit Application" menu option and the application is closed. 
+The E-commerce Back End project functions as a command-line application. After following the installation instructions above, the server will be running and users can test the API endpoints via Insomnia to see the JSON responses they generate. These responses will either contain formatted JSON objects of all the data associated with the call that is stored in the MySQL database (GET requests), or confirmation messages of the completed POST, PUT, or DELETE actions. 
 
 ### --- Video demonstration of application's functionality ---
 
