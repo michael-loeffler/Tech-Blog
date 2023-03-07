@@ -66,7 +66,7 @@ The E-commerce Back End project functions as a command-line application. After f
 
 ### --- Video demonstration of application's functionality ---
 
-Please review the [demonstration video](https://drive.google.com/file/d/1mgfDLoTw5uz2s_H8bSDM-OJbfhZ0wfSA/view) to see how the app functions and experience the user perspective.
+Please review the [demonstration video](https://drive.google.com/file/d/1s9C0J5U4Zaa1ejMTVhTg4p7wSvJ-G_zW/view) to see how the app functions and experience the user perspective.
     
 ## Credits
 
