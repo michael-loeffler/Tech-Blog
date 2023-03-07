@@ -4,9 +4,9 @@
 
 ## Description
     
-The E-commerce Back End project is meant to serve as the back-end functionality for an e-commerce website. It uses Sequelize to connect the Express.js API to a MySQL database containing data about various products sold on the site. This connection allows a back-end user to, using the various API endpoints, 1) view all categories, products, or tags in the database, 2) view an individual category, product, or tag, 3) create a new category, product, or tag, 4) update an existing category, product, or tag, and 5) delete an existing category, product, or tag.
+The E-commerce Back End project is meant to serve as the back-end functionality for an e-commerce website. It uses Sequelize to connect the Express.js API to a MySQL database containing data about various products sold on the site. This connection allows a back-end user to 1) view all categories, products, or tags in the database, 2) view an individual category, product, or tag, 3) create a new category, product, or tag, 4) update an existing category, product, or tag, and 5) delete an existing category, product, or tag.
 
-I was motivated to create this application because it is important to be able to connect data stored in a database with the front end of a website, while organizing the data using object-relational mapping to make the data easily interpreted and utilized by the front end so it can be displayed for the end user (consumer).
+I was motivated to create this application because it is important to be able to connect data stored in a database with the front end of a website, while organizing the data using object-relational mapping. One does this to make the data easily interpreted and utilized by the front end so it can be displayed for the end user (consumer).
 
 Through working on this project, I have learned how to use Sequelize and dotenv to connect an Express API to a MySQL database and create Models for SQL tables within JavaScript. Some of the biggest points of learning include:
 
