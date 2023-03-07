@@ -48,8 +48,8 @@ Through working on this project, I have learned how to use Sequelize and dotenv 
    ```
 5. Open MySQL, and run the following commands 
    ```sh
-   source db\schema.sql;
-   quit;
+   source db\schema.sql
+   quit
    ```
 6. Seed the database in the command-line using the following command
    ```sh
