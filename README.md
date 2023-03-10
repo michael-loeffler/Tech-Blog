@@ -1,10 +1,10 @@
-# E-commerce Back End
+# Tech Blog
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
     
-The E-commerce Back End project is meant to serve as the back-end functionality for an e-commerce website. It uses Sequelize to connect the Express.js API to a MySQL database containing data about various products sold on the site. This connection allows a back-end user to 1) view all categories, products, or tags in the database, 2) view an individual category, product, or tag, 3) create a new category, product, or tag, 4) update an existing category, product, or tag, and 5) delete an existing category, product, or tag.
+The Tech Blog project is meant to serve as the back-end functionality for an e-commerce website. It uses Sequelize to connect the Express.js API to a MySQL database containing data about various products sold on the site. This connection allows a back-end user to 1) view all categories, products, or tags in the database, 2) view an individual category, product, or tag, 3) create a new category, product, or tag, 4) update an existing category, product, or tag, and 5) delete an existing category, product, or tag.
 
 I was motivated to create this application because it is important to be able to connect data stored in a database with the front end of a website, while organizing the data using object-relational mapping. One does this to make the data easily interpreted and utilized by the front end so it can be displayed for the end user (consumer).
 
@@ -34,7 +34,7 @@ Through working on this project, I have learned how to use Sequelize and dotenv 
     - [Download Version 16 of Node.js](https://nodejs.org/download/release/v16.18.0/node-v16.18.0-x64.msi)
 2. Clone this repo
    ```sh
-   git clone https://github.com/michael-loeffler/E-commerce-Back-End.git
+   git clone https://github.com/michael-loeffler/Tech-Blog.git
    ```
 3. Install the dependencies included in the package.json
    ```sh
@@ -62,7 +62,7 @@ Through working on this project, I have learned how to use Sequelize and dotenv 
     
 ## Usage
     
-The E-commerce Back End project functions as a command-line application. After following the installation instructions above, the server will be running and users can test the API endpoints via Insomnia to see the JSON responses they generate. These responses will either contain formatted JSON objects of all the data associated with the call that is stored in the MySQL database (GET requests), or confirmation messages of the completed POST, PUT, or DELETE actions. 
+The Tech Blog project functions as a command-line application. After following the installation instructions above, the server will be running and users can test the API endpoints via Insomnia to see the JSON responses they generate. These responses will either contain formatted JSON objects of all the data associated with the call that is stored in the MySQL database (GET requests), or confirmation messages of the completed POST, PUT, or DELETE actions. 
 
 ### --- Video demonstration of application's functionality ---
 
