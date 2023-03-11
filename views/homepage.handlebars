@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoe Store Home</title>
+    <title>Tech Blog</title>
 </head>
 <body>
-    {{#each products as |product|}}
-   <a href="./{{product.id}}"><h1> {{product.product_name}}</h1></a>
-    {{!-- {{product.link}} will go to product/productid then will look up specific product --}}
-    <img src="{{product.image_url}}"/>
-    <p>{{product.price}} </p>
-    {{!-- <p>{{product.rating}}</p> --}}
-    <p>{{product.stock}}</p>
+    {{#each posts as |post|}}
+   <a href="./{{post.id}}"><h1> {{post.title}}</h1></a>
+
+    <p>{{post.content}} </p>
+
+    <p>{{post.comment.content}}</p>
     {{/each}}
 </body>
 </html>
