@@ -1,32 +1,26 @@
-// const { User } = require('../models');
+const { User } = require('../models');
 
-// const userData = [
-//   {
-//     user_name: 'rock music',
-//   },
-//   {
-//     user_name: 'pop music',
-//   },
-//   {
-//     user_name: 'blue',
-//   },
-//   {
-//     user_name: 'red',
-//   },
-//   {
-//     user_name: 'green',
-//   },
-//   {
-//     user_name: 'white',
-//   },
-//   {
-//     user_name: 'gold',
-//   },
-//   {
-//     user_name: 'pop culture',
-//   },
-// ];
+const userData = [
+    {
+        name: 'Michael Loeffler',
+        username: "mloeff",
+        email: 'michaelloeffler23@gmail.com',
+        password: '2363Michael!8747',
+    },
+    {
+        name: 'Sarah Loeffler',
+        username: "sloeff",
+        email: 'sarahloeffler95@gmail.com',
+        password: '2363Sarah!8747',
+    },
+    {
+        name: 'Bella Loeffler',
+        username: "bloeff",
+        email: 'b.loeffler@fbi.gov',
+        password: '2363Bella!8747',
+    }
+];
 
-// const seedUsers = () => User.bulkCreate(userData);
+const seedUsers = () => User.bulkCreate(userData);
 
-// module.exports = seedUsers;
+module.exports = seedUsers;

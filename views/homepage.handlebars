@@ -8,11 +8,13 @@
 </head>
 <body>
     {{#each posts as |post|}}
-   <a href="./{{post.id}}"><h1> {{post.title}}</h1></a>
+      <a href="./{{post.id}}"><h1>{{post.title}}</h1></a>
+      <h3>Posted by {{post.user.username}} on {{post.created_at}}</h3>
+      <p>{{post.content}} </p>
 
-    <p>{{post.content}} </p>
-
-    <p>{{post.comment.content}}</p>
+      {{#each comments as |comment|}}
+      <p>{{comment.content}} - {{comments.user.username}}</p>
+      {{/each}}
     {{/each}}
 </body>
 </html>

@@ -14,7 +14,13 @@ router.get('/', async (req, res) => {
     })
     const posts = postData.map((post) => post.get({plain: true}))
 
-    res.status(200).render('homepage', {posts})
+    const commentData = await Comment.findAll({
+        include: [User], 
+        attributes: { exclude: ['password'] },
+        //order: [['comment_name', 'ASC']]
+      })
+    const comments = commentData.map((comment) => comment.get({plain: true}))
+    res.status(200).render('homepage', {posts, comments})
   } catch (err) { 
     res.status(400).json(err)
   }
