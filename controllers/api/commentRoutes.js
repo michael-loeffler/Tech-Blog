@@ -8,7 +8,7 @@ const sequelize = require('../../config/connection');
 router.get('/', async (req, res) => {
     try {
     const commentData = await Comment.findAll({
-      include: [User, Post], 
+      include: [User], 
       attributes: { exclude: ['password'] },
       //order: [['comment_name', 'ASC']]
     })
@@ -21,5 +21,7 @@ router.get('/', async (req, res) => {
     res.status(400).json(err)
   }
   });
+
+  // will need withAuth for post route for new comments 
 
   module.exports = router;

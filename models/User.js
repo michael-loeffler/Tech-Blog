@@ -24,14 +24,6 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail: true,
-      },
-    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -46,10 +38,12 @@ User.init(
         newUserData.password = await bcrypt.hash(newUserData.password, 10);
         return newUserData;
       },
-      // beforeBulkCreate: async (newUserData) => {
-      //   newUserData.password = await bcrypt.hash(newUserData.password, 10);
-      //   return newUserData;
-      // },
+      beforeBulkCreate: async (newUserData, options) => {
+        for (const user of newUserData) {
+          user.password = await bcrypt.hash(user.password, 10);
+      }
+        return newUserData;
+      },
       beforeUpdate: async (updatedUserData) => {
         updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
         return updatedUserData;

@@ -2,18 +2,18 @@ const { Post } = require('../models');
 
 const postData = [
   {
-    title: 'Plain T-Shirt',
-    content: 'lemme get aaaa Plain T-Shirt',
+    title: 'My Favorite Treats',
+    content: 'CHEESE, STICK, FRIES, DOODLES, PETZELS, PEANUT BUTTER, TURKEY, BREAD',
     user_id: 3,
   },
   {
-    title: 'Running Sneakers',
-    content: 'Yeah so Running Sneakers',
+    title: 'The healing power of cross-stitch',
+    content: 'Benefits include: relaxation, creative outlet, tactile experience, great background activity, helps with car sickness',
     user_id: 2,
   },
   {
-    title: 'Branded Baseball Hat',
-    content: 'Branded. Baseball. Hat. In this essay I will',
+    title: 'Thanos wuz right',
+    content: 'I saw a whale in the Hudson',
     user_id: 1,
   },
 ];
