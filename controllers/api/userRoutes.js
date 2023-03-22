@@ -5,11 +5,14 @@ router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
+    const redirect_url = req.session.redirect_url;
+
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
+      req.session.redirect_url = redirect_url; // stores user's intended destination before login page
 
-      res.status(200).json(userData);
+      res.status(200).json({ user: userData, redirect_url: redirect_url });
     });
   } catch (err) {
     res.status(400).json(err);
@@ -36,13 +39,15 @@ router.post('/login', async (req, res) => {
       return;
     }
 
+    const redirect_url = req.session.redirect_url;
+
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
+      req.session.redirect_url = redirect_url; // stores user's intended destination before login page
 
+      res.json({ user: userData, message: 'You are now logged in!', redirect_url: redirect_url });
+    });
   } catch (err) {
     res.status(400).json(err);
   }
