@@ -58,8 +58,11 @@ router.get('/post/:postId', async (req, res) => {
             //order: [['post_name', 'ASC']]
           })
         const post = postData.get({ plain: true })
-
+        if (req.session.logged_in) {
         res.status(200).render('post', { post, logged_in: true })
+        } else {
+        res.status(200).render('post', { post }) 
+        }
     } catch (err) {
         res.status(400).json(err)
     }

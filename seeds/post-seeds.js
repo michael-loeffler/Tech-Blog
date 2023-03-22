@@ -13,7 +13,7 @@ const postData = [
   },
   {
     title: 'Thanos wuz right',
-    content: 'I saw a whale in the Hudson',
+    content: 'Balanced, as all things should be',
     user_id: 1,
   },
 ];

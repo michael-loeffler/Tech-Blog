@@ -58,22 +58,22 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// router.get('/', async (req, res) => {
-//   try {
-//   const userData = await User.findAll({
-//     include: [Post, Comment], 
-//     attributes: { exclude: ['password'] },
-//     //order: [['name', 'ASC']]
-//   })
+router.get('/', async (req, res) => {
+  try {
+  const userData = await User.findAll({
+    include: [{ model: Post }], 
+    attributes: { exclude: ['password'] },
+    //order: [['name', 'ASC']]
+  })
 
-//   res.status(200).json(userData);
-//   // const users = userData.map((user) => user.get({plain: true}))
+  res.status(200).json(userData);
+  // const users = userData.map((user) => user.get({plain: true}))
 
-//   // res.status(200).render('homepage', {users})
-// } catch (err) { 
-//   res.status(400).json(err)
-// }
-// });
+  // res.status(200).render('homepage', {users})
+} catch (err) { 
+  res.status(400).json(err)
+}
+});
 
 
 module.exports = router;
