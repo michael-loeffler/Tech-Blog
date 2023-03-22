@@ -30,10 +30,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
         const user = userData.get({ plain: true });
 
-        res.status(200).render('dashboard', {
-            ...user,
-            logged_in: true
-        });
+        res.status(200).render('dashboard', { user, logged_in: true });
     } catch (err) {
         res.status(500).json(err);
     }
