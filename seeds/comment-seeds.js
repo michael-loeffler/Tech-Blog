@@ -2,29 +2,29 @@ const { Comment } = require('../models');
 
 const commentData = [
   {
-    content: 'Comment - M',
+    content: 'We like fries!!!!!!!!!',
     user_id: 1,
     post_id: 1,
   },
   {
-    content: 'Comment - S',
+    content: 'Nerrrrrrrrrdddddddddddddddd',
     user_id: 2,
-    post_id: 2,
+    post_id: 3,
   },
   {
-    content: 'Comment - B',
+    content: 'Thank u daddie',
     user_id: 3,
     post_id: 1,
   },
   {
-    content: 'Comment - S',
+    content: 'Love sharing my doodles with you Bellie!!',
     user_id: 2,
-    post_id: 2,
+    post_id: 1,
   },
   {
-    content: 'Comment - M',
+    content: 'We love the stitch! My brother went to the stitch!!',
     user_id: 1,
-    post_id: 1,
+    post_id: 2,
   },
 ];
 

@@ -3,7 +3,7 @@
 <p>{{post.content}} </p>
 
 {{#each post.comments as |comment|}}
-<p>{{comment.content}} - {{comment.user.username}}</p>
+<p>{{comment.content}} - <i>{{comment.user.username}}</i></p>
 {{/each}}
 {{#if logged_in}}
 <button>Leave a comment</button>

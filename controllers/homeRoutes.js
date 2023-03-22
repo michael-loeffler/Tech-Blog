@@ -49,19 +49,17 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-router.get('/posts/:postId', async (req, res) => {
+router.get('/post/:postId', async (req, res) => {
     console.log('current route: post');
     try {
         const postData = await Post.findByPk(req.params.postId, {
-            include: [
-                { model: Comment, include: [{ model: Post.Comment.User }] }
-            ],
-            attributes: { exclude: ['password'] },
+            include: [{model: Comment, include:[{model: User, attributes: {exclude: ['password']}}]}, {model: User, attributes: { exclude: ['password'] }}],
+            
             //order: [['post_name', 'ASC']]
-        })
+          })
         const post = postData.get({ plain: true })
 
-        res.status(200).render('post', { post })
+        res.status(200).render('post', { post, logged_in: true })
     } catch (err) {
         res.status(400).json(err)
     }
