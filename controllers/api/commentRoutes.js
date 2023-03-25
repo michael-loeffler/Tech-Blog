@@ -5,23 +5,31 @@ const withAuth = require('../../utils/auth');
 //import sequelize
 const sequelize = require('../../config/connection');
 
+router.post('/', async (req, res) => {
+  try {
+    const commentData = await Comment.create({
+      content: req.body.content,
+      user_id: req.session.user_id,
+      post_id: req.body.post_id
+    });
+    res.status(200).json({ message: 'New comment successfully created', comment: commentData });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
 router.get('/', async (req, res) => {
-    try {
+  try {
     const commentData = await Comment.findAll({
-      include: [User], 
-      attributes: { exclude: ['password'] },
-      //order: [['comment_name', 'ASC']]
+      include: [{ model: User, attributes: { exclude: ['password'] }, }],
     })
-
     res.status(200).json(commentData);
-    // const comments = commentData.map((comment) => comment.get({plain: true}))
-
-    // res.status(200).render('homepage', {comments})
-  } catch (err) { 
+  } catch (err) {
     res.status(400).json(err)
   }
-  });
+});
 
-  // will need withAuth for post route for new comments 
+// will need withAuth for post route for new comments 
 
-  module.exports = router;
+module.exports = router;

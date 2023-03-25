@@ -7,6 +7,12 @@
 <p>{{comment.content}} - <i>{{comment.user.username}}</i></p>
 {{/each}}
 {{#if logged_in}}
-<button>Leave a comment</button>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Leave a comment..." aria-label="commentBox" aria-describedby="basic-addon2" id="content">
+  <div class="input-group-append">
+    <button class="btn btn-outline-primary" type="button" data-id="{{post.id}}">Post</button>
+  </div>
+</div>
 {{/if}}
 
+<script src="/js/comment.js"></script>
