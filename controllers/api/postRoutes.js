@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 //import sequelize
 const sequelize = require('../../config/connection');
 
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   try {
     const postData = await Post.create({
       title: req.body.title,
@@ -14,9 +14,31 @@ router.post('/', async (req, res) => {
     });
     res.status(200).json({ message: 'New post successfully created', post: postData });
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
-})
+});
+
+router.delete('/:postId', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.destroy({
+      where: {
+        user_id: req.session.user_id,
+        id: req.params.postId
+      }
+    });
+
+    if (!postData) {
+      res.status(404).json({ message: `No post found with this id(${req.params.postId})!` });
+      return;
+    }
+
+    res.status(200).json({ message: 'Post successfully deleted', post: postData });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
 
 
 
