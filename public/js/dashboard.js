@@ -1,6 +1,7 @@
 // need to have feature to rerender the page with new data after form submission
 const form = document.querySelector('form');
 const postRemove = document.getElementsByClassName('postRemove');
+const newPostBtn = document.querySelector('#newPost');
 
 const addPost = async (e) => {
     e.preventDefault();
@@ -16,6 +17,7 @@ const addPost = async (e) => {
 
     if (response.ok) {
         form.reset();
+        form.classList.add('display_none');
         location.reload();
     } else {
         alert('Post was not created successfully');
@@ -36,8 +38,14 @@ const deletePost = async (e) => {
     }
 };
 
+const displayNewPostForm = () => {
+    form.classList.remove('display-none');
+}
+
 form.addEventListener('submit', addPost);
 
 for (var i = 0; i < postRemove.length; i++) {
     postRemove[i].addEventListener('click', deletePost);
 }
+
+newPostBtn.addEventListener('click', displayNewPostForm)

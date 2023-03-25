@@ -23,9 +23,10 @@
   {{else}}
   <h3>No posts to show yet!</h3>
   {{/if}}
-    <h3>Write a new post:</h3>
-
-    <form class="form new-post-form">
+    <div class="form-group">
+      <button id="newPost" class="btn btn-primary">New Post</button>
+    </div>
+    <form class="form new-post-form display-none">
       <div class="form-group">
         <label for="title">Title:</label>
         <input class="form-input" type="text" id="title" name="title" />
