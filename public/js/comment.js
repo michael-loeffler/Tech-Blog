@@ -5,10 +5,6 @@ const contentField = document.querySelector('#content');
 const commentRemove = document.getElementsByClassName('commentRemove');
 // const commentContainer = document.getElementsByClassName('commentContainer');
 
-const displayNewCommentForm = () => {
-    form.classList.remove('display-none');
-};
-
 const addComment = async (e) => {
     e.preventDefault();
     const post_id = e.target.getAttribute('data-id');
@@ -31,42 +27,39 @@ const addComment = async (e) => {
     }
 };
 
-// const updateTextBox = async (e) => {
-//     const button = e.target;
-//     const comment_id = button.getAttribute('id');
-//     currentCommentId = comment_id;
+const updateTextBox = async (e) => {
+    const button = e.target;
+    const comment_id = button.getAttribute('id');
+    currentCommentId = comment_id;
 
-//     const currentCommentFetch = await fetch(`/api/comments/${comment_id}`, {
-//         method: 'GET',
-//     });
-//     const responseJSON = await currentCommentFetch.json();
-//     const currentComment = await responseJSON;
-//     contentField.textContent = currentComment.content;
-//     newCommentBtn.textContent = 'Update';
-//     newCommentBtn.removeEventListener('click', addComment);
-//     newCommentBtn.addEventListener('click', updateComment);
-// };
+    const currentCommentFetch = await fetch(`/api/comments/${comment_id}`, {
+        method: 'GET',
+    });
+    const responseJSON = await currentCommentFetch.json();
+    const currentComment = await responseJSON;
+    contentField.value = currentComment.content;
+    newCommentBtn.textContent = 'Update';
+    newCommentBtn.removeEventListener('click', addComment);
+    newCommentBtn.addEventListener('click', updateComment);
+};
 
-// const updateComment = async (e) => {
-//     const comment_id = currentCommentId;
-//     currentCommentId = '';
-//     const content = document.querySelector('#content').value.trim();
+const updateComment = async (e) => {
+    const comment_id = currentCommentId;
+    currentCommentId = '';
+    const content = document.querySelector('#content').value.trim();
 
-//     const response = await fetch(`/api/comments/${comment_id}`, {
-//         method: 'PUT',
-//         body: JSON.stringify({ content }),
-//         headers: { 'Content-Type': 'application/json' }
-//     });
+    const response = await fetch(`/api/comments/${comment_id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ content }),
+        headers: { 'Content-Type': 'application/json' }
+    });
     
-//     if (response.ok) {
-//         // submitBtn.textContent = 'Comment';
-//         form.removeEventListener('submit', updateComment);
-//         form.addEventListener('submit', addComment);
-//         location.reload();
-//     } else {
-//         alert('Failed to update Comment');
-//     }
-// }
+    if (response.ok) {
+        location.reload();
+    } else {
+        alert('Failed to update Comment');
+    }
+}
 
 
 const deleteComment = async (e) => {
@@ -86,9 +79,9 @@ const deleteComment = async (e) => {
 
 newCommentBtn.addEventListener('click', addComment);
 
-// for (var i = 0; i < commentUpdate.length; i++) {
-//     commentUpdate[i].addEventListener('click', updateForm);
-// }
+for (var i = 0; i < commentUpdate.length; i++) {
+    commentUpdate[i].addEventListener('click', updateTextBox);
+}
 
 for (var i = 0; i < commentRemove.length; i++) {
     commentRemove[i].addEventListener('click', deleteComment);

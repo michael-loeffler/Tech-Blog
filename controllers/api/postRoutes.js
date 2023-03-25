@@ -49,7 +49,7 @@ router.put('/:postId', withAuth, async (req, res) => {
       },
       {
         where: {
-          // user_id: req.session.user_id,
+          user_id: req.session.user_id,
           id: req.params.postId
         }
       }
@@ -59,7 +59,7 @@ router.put('/:postId', withAuth, async (req, res) => {
     console.log(err);
     res.status(400).json(err);
   }
-})
+});
 
 router.get('/', async (req, res) => {
   try {

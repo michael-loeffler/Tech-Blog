@@ -8,10 +8,12 @@
   <div class="col-md-8">
     <p>{{comment.content}} - <i>{{comment.user.username}}</i></p>
   </div>
+  {{!-- {{#if logged_in}} --}}
   <div class="col-md-4">
     <button class="btn btn-sm btn-outline-secondary commentUpdate {{!--display-none--}}" id="{{comment.id}}">UPDATE</button>
     <button class="btn btn-sm btn-outline-danger commentRemove {{!--display-none--}}" id="{{comment.id}}">DELETE</button>
   </div>
+  {{!-- {{/if}} --}}
 </div>
 {{/each}}
 {{#if logged_in}}
@@ -21,6 +23,5 @@
     <button id="newComment" class="btn btn-outline-primary" type="button" data-id="{{post.id}}">Post</button>
   </div>
 </div>
-{{/if}}
-
 <script src="/js/comment.js"></script>
+{{/if}}

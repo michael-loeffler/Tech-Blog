@@ -40,6 +40,26 @@ router.delete('/:commentId', withAuth, async (req, res) => {
   }
 });
 
+router.put('/:commentId', withAuth, async (req, res) => {
+  try {
+    const commentData = await Comment.update(
+      {
+        content: req.body.content,
+      },
+      {
+        where: {
+          user_id: req.session.user_id,
+          id: req.params.commentId
+        }
+      }
+    );
+    res.status(200).json({ message: 'Comment successfully updated', comment: commentData });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
 router.get('/', async (req, res) => {
   try {
     const commentData = await Comment.findAll({
@@ -51,16 +71,16 @@ router.get('/', async (req, res) => {
   }
 });
 
-// router.get('/:commentId', async (req, res) => {
-//   try {
-//     const commentData = await Comment.findByPk(req.params.commentId, {
-//       include: [{ model: User, attributes: { exclude: ['password'] }, }],
-//     })
-//     const comment = commentData.get({ plain: true })
-//     res.status(200).json(comment);
-//   } catch (err) {
-//     res.status(400).json(err)
-//   }
-// });
+router.get('/:commentId', async (req, res) => {
+  try {
+    const commentData = await Comment.findByPk(req.params.commentId, {
+      include: [{ model: User, attributes: { exclude: ['password'] }, }],
+    })
+    const comment = commentData.get({ plain: true })
+    res.status(200).json(comment);
+  } catch (err) {
+    res.status(400).json(err)
+  }
+});
 
 module.exports = router;
