@@ -1,10 +1,9 @@
-const newCommentBtn = document.querySelector('button');
+const newCommentBtn = document.querySelector('#newComment');
 const commentUpdate = document.getElementsByClassName('commentUpdate');
 let currentCommentId;
 const contentField = document.querySelector('#content');
 const commentRemove = document.getElementsByClassName('commentRemove');
 // const commentContainer = document.getElementsByClassName('commentContainer');
-const submitBtn = document.querySelector('form button');
 
 const displayNewCommentForm = () => {
     form.classList.remove('display-none');
@@ -18,7 +17,7 @@ const addComment = async (e) => {
     if (!content) {
         return;
     }
-    
+
     const response = await fetch('/api/comments', {
         method: 'POST',
         body: JSON.stringify({ content, post_id }),
@@ -32,35 +31,30 @@ const addComment = async (e) => {
     }
 };
 
-// const updateForm = async (e) => {
-//     newCommentBtn.classList.add('display-none');
-//     displayNewCommentForm();
-
+// const updateTextBox = async (e) => {
 //     const button = e.target;
-//     const product_id = button.getAttribute('id');
-//     currentCommentId = product_id;
+//     const comment_id = button.getAttribute('id');
+//     currentCommentId = comment_id;
 
-//     const currentCommentFetch = await fetch(`/api/comments/${product_id}`, {
+//     const currentCommentFetch = await fetch(`/api/comments/${comment_id}`, {
 //         method: 'GET',
 //     });
 //     const responseJSON = await currentCommentFetch.json();
 //     const currentComment = await responseJSON;
-//     titleField.value = currentComment.title;
 //     contentField.textContent = currentComment.content;
-//     submitBtn.textContent = 'Update Comment';
-//     form.removeEventListener('submit', addComment);
-//     form.addEventListener('submit', updateComment);
+//     newCommentBtn.textContent = 'Update';
+//     newCommentBtn.removeEventListener('click', addComment);
+//     newCommentBtn.addEventListener('click', updateComment);
 // };
 
 // const updateComment = async (e) => {
-//     const product_id = currentCommentId;
+//     const comment_id = currentCommentId;
 //     currentCommentId = '';
-//     const title = document.querySelector('#title').value.trim();
 //     const content = document.querySelector('#content').value.trim();
 
-//     const response = await fetch(`/api/comments/${product_id}`, {
+//     const response = await fetch(`/api/comments/${comment_id}`, {
 //         method: 'PUT',
-//         body: JSON.stringify({ title, content }),
+//         body: JSON.stringify({ content }),
 //         headers: { 'Content-Type': 'application/json' }
 //     });
     
@@ -75,19 +69,19 @@ const addComment = async (e) => {
 // }
 
 
-// const deleteComment = async (e) => {
-//     const button = e.target;
-//     const product_id = button.getAttribute('id');
-//     const response = await fetch(`/api/comments/${product_id}`, {
-//         method: 'DELETE'
-//     });
+const deleteComment = async (e) => {
+    const button = e.target;
+    const comment_id = button.getAttribute('id');
+    const response = await fetch(`/api/comments/${comment_id}`, {
+        method: 'DELETE'
+    });
 
-//     if (response.ok) {
-//         location.reload();
-//     } else {
-//         alert('Failed to delete Comment');
-//     }
-// };
+    if (response.ok) {
+        location.reload();
+    } else {
+        alert('Failed to delete Comment');
+    }
+};
 
 
 newCommentBtn.addEventListener('click', addComment);
@@ -96,9 +90,9 @@ newCommentBtn.addEventListener('click', addComment);
 //     commentUpdate[i].addEventListener('click', updateForm);
 // }
 
-// for (var i = 0; i < commentRemove.length; i++) {
-//     commentRemove[i].addEventListener('click', deleteComment);
-// }
+for (var i = 0; i < commentRemove.length; i++) {
+    commentRemove[i].addEventListener('click', deleteComment);
+}
 
 
 

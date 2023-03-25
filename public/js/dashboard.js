@@ -40,10 +40,10 @@ const updateForm = async (e) => {
     displayNewPostForm();
 
     const button = e.target;
-    const product_id = button.getAttribute('id');
-    currentPostId = product_id;
+    const post_id = button.getAttribute('id');
+    currentPostId = post_id;
 
-    const currentPostFetch = await fetch(`/api/posts/${product_id}`, {
+    const currentPostFetch = await fetch(`/api/posts/${post_id}`, {
         method: 'GET',
     });
     const responseJSON = await currentPostFetch.json();
@@ -56,12 +56,12 @@ const updateForm = async (e) => {
 };
 
 const updatePost = async (e) => {
-    const product_id = currentPostId;
+    const post_id = currentPostId;
     currentPostId = '';
     const title = document.querySelector('#title').value.trim();
     const content = document.querySelector('#content').value.trim();
 
-    const response = await fetch(`/api/posts/${product_id}`, {
+    const response = await fetch(`/api/posts/${post_id}`, {
         method: 'PUT',
         body: JSON.stringify({ title, content }),
         headers: { 'Content-Type': 'application/json' }
@@ -80,8 +80,8 @@ const updatePost = async (e) => {
 
 const deletePost = async (e) => {
     const button = e.target;
-    const product_id = button.getAttribute('id');
-    const response = await fetch(`/api/posts/${product_id}`, {
+    const post_id = button.getAttribute('id');
+    const response = await fetch(`/api/posts/${post_id}`, {
         method: 'DELETE'
     });
 
