@@ -40,12 +40,26 @@ router.delete('/:postId', withAuth, async (req, res) => {
   }
 });
 
-
-
-
-
-
-
+router.put('/:postId', withAuth, async (req, res) => {
+  try {
+    const postData = await Post.update(
+      {
+        title: req.body.title,
+        content: req.body.content,
+      },
+      {
+        where: {
+          // user_id: req.session.user_id,
+          id: req.params.postId
+        }
+      }
+    );
+    res.status(200).json({ message: 'Post successfully updated', post: postData });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+})
 
 router.get('/', async (req, res) => {
   try {
@@ -56,6 +70,20 @@ router.get('/', async (req, res) => {
     })
     const posts = postData.map((post) => post.get({ plain: true }))
     res.status(200).json(postData);
+  } catch (err) {
+    res.status(400).json(err)
+  }
+});
+
+router.get('/:postId', async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.postId, {
+      include: [{ model: Comment, include: [{ model: User, attributes: { exclude: ['password'] } }] }, { model: User, attributes: { exclude: ['password'] } }],
+
+      //order: [['post_name', 'ASC']]
+    })
+    const post = postData.get({ plain: true })
+    res.status(200).json(post);
   } catch (err) {
     res.status(400).json(err)
   }

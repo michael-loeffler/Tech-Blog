@@ -3,7 +3,6 @@ const { Comment, Post, User } = require('../models')
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
-    console.log('current route: homepage');
     try {
         const postData = await Post.findAll({
             include: [Comment, User],
@@ -23,7 +22,6 @@ router.get('/', async (req, res) => {
 
 
 router.get('/dashboard', withAuth, async (req, res) => {
-    console.log('current route: dashboard');
     try {
         // Find the logged in user based on the session ID
         const userData = await User.findByPk(req.session.user_id, {
@@ -40,7 +38,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    console.log('current route: login');
     // If the user is already logged in, redirect the request to another route
     if (req.session.logged_in) {
         res.redirect('/dashboard');
@@ -50,7 +47,6 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/post/:postId', async (req, res) => {
-    console.log('current route: post');
     try {
         const postData = await Post.findByPk(req.params.postId, {
             include: [{ model: Comment, include: [{ model: User, attributes: { exclude: ['password'] } }] }, { model: User, attributes: { exclude: ['password'] } }],

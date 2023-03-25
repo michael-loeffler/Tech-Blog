@@ -10,12 +10,13 @@
     <h3>Current posts:</h3>
 
     {{#each user.posts as |post|}}
-    <div class="row mb-2">
+    <div class="row mb-2 {{!--postContainer--}}">
       <div class="col-md-8">
         <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
       </div>
       <div class="col-md-4">
-        <button class="btn btn-sm btn-danger postRemove" id="{{post.id}}">DELETE</button>
+        <button class="btn btn-sm btn-secondary postUpdate {{!--display-none--}}" id="{{post.id}}">UPDATE</button>
+        <button class="btn btn-sm btn-danger postRemove {{!--display-none--}}" id="{{post.id}}">DELETE</button>
       </div>
     </div>
     {{/each}}
@@ -26,6 +27,7 @@
     <div class="form-group">
       <button id="newPost" class="btn btn-primary">New Post</button>
     </div>
+
     <form class="form new-post-form display-none">
       <div class="form-group">
         <label for="title">Title:</label>
