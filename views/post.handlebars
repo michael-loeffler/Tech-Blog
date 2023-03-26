@@ -6,7 +6,7 @@
 {{#each post.comments as |comment|}}
 <div class="row mb-2">
   <div class="col-md-8">
-    <p>{{comment.content}} - <i>{{comment.user.username}}</i></p>
+    <p>{{comment.content}} - <i>{{comment.user.username}}, {{format_date comment.date_created}}</i></p>
   </div>
   {{#if comment.yours}}
   <div class="col-md-4">
