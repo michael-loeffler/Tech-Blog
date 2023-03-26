@@ -8,14 +8,17 @@
   <div class="col-md-8">
     <p>{{comment.content}} - <i>{{comment.user.username}}</i></p>
   </div>
-  {{!-- {{#if logged_in}} --}}
+  {{#if comment.yours}}
   <div class="col-md-4">
     <button class="btn btn-sm btn-outline-secondary commentUpdate {{!--display-none--}}" id="{{comment.id}}">UPDATE</button>
     <button class="btn btn-sm btn-outline-danger commentRemove {{!--display-none--}}" id="{{comment.id}}">DELETE</button>
   </div>
-  {{!-- {{/if}} --}}
+  {{/if}}
+
+
 </div>
 {{/each}}
+
 {{#if logged_in}}
 <div class="input-group mb-3 row">
   <input type="text" class="form-control col-md-9" placeholder="Leave a comment..." aria-label="commentBox" aria-describedby="basic-addon2" id="content">
