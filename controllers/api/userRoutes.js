@@ -71,10 +71,9 @@ router.get('/', async (req, res) => {
     //order: [['name', 'ASC']]
   })
 
-  res.status(200).json(userData);
-  // const users = userData.map((user) => user.get({plain: true}))
+  const users = userData.map((user) => user.get({plain: true}))
+  res.status(200).json(users);
 
-  // res.status(200).render('homepage', {users})
 } catch (err) { 
   res.status(400).json(err)
 }

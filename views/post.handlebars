@@ -3,28 +3,42 @@
 <p>{{post.content}} </p>
 
 <h4>Comments:</h4>
-{{#each post.comments as |comment|}}
-<div class="row mb-2">
-  <div class="col-md-8">
-    <p>{{comment.content}} - <i>{{comment.user.username}}, {{format_date comment.date_created}}</i></p>
+{{#if post.comments.length}}
+  {{#each post.comments as |comment|}}
+  <div class="row mb-2">
+    <div class="col-md-8">
+      <p>{{comment.content}} - <i>{{comment.user.username}}, {{format_date comment.date_created}}</i></p>
+    </div>
+    {{#if comment.yours}}
+    <div class="col-md-4">
+      <button class="btn btn-sm btn-outline-secondary commentUpdate {{!--display-none--}}" id="{{comment.id}}">UPDATE</button>
+      <button class="btn btn-sm btn-outline-danger commentRemove {{!--display-none--}}" id="{{comment.id}}">DELETE</button>
+    </div>
+    {{/if}}
   </div>
-  {{#if comment.yours}}
-  <div class="col-md-4">
-    <button class="btn btn-sm btn-outline-secondary commentUpdate {{!--display-none--}}" id="{{comment.id}}">UPDATE</button>
-    <button class="btn btn-sm btn-outline-danger commentRemove {{!--display-none--}}" id="{{comment.id}}">DELETE</button>
+  {{/each}}
+  {{#if logged_in}}
+  <div class="input-group mb-3 row">
+    <input type="text" class="form-control col-md-9" placeholder="Leave a comment..." aria-label="commentBox" aria-describedby="basic-addon2" id="content">
+    <div class="input-group-append col-md-3">
+      <button id="newComment" class="btn btn-outline-primary" type="button" data-id="{{post.id}}">Post</button>
+    </div>
   </div>
+  {{else}}
+  <p>Please <a href='/login'>login</a> in order to comment on this post.</p>
   {{/if}}
-
-
-</div>
-{{/each}}
-
-{{#if logged_in}}
-<div class="input-group mb-3 row">
-  <input type="text" class="form-control col-md-9" placeholder="Leave a comment..." aria-label="commentBox" aria-describedby="basic-addon2" id="content">
-  <div class="input-group-append col-md-3">
-    <button id="newComment" class="btn btn-outline-primary" type="button" data-id="{{post.id}}">Post</button>
+{{else}}
+<h5>Be the first to comment on this post!</h5>
+  {{#if logged_in}}
+  <div class="input-group mb-3 row">
+    <input type="text" class="form-control col-md-9" placeholder="Leave a comment..." aria-label="commentBox" aria-describedby="basic-addon2" id="content">
+    <div class="input-group-append col-md-3">
+      <button id="newComment" class="btn btn-outline-primary" type="button" data-id="{{post.id}}">Post</button>
+    </div>
   </div>
-</div>
-<script src="/js/comment.js"></script>
+  {{else}}
+  <p>Please <a href='/login'>login</a> in order to comment on this post.</p>
+  {{/if}}
 {{/if}}
+
+  <script src="/js/comment.js"></script>

@@ -4,31 +4,34 @@
 
 ## Description
     
-The Tech Blog project is meant to serve as the back-end functionality for an e-commerce website. It uses Sequelize to connect the Express.js API to a MySQL database containing data about various products sold on the site. This connection allows a back-end user to 1) view all categories, products, or tags in the database, 2) view an individual category, product, or tag, 3) create a new category, product, or tag, 4) update an existing category, product, or tag, and 5) delete an existing category, product, or tag.
+This Tech Blog is a full-stack web application allowing users to create blog posts about topics of interest, as well as comment on others' posts. Users can browse titles of current blog posts (as well as see who wrote them), and after clicking on one, can view the full blog and any comments made on the post. Once a user creates an account and logs in, they will have the ability to write their own posts, as well as comment on the blogs of other users. At any time, logged in users can update or delete any posts or comments they have written. Whenever a change is made, the page will respond dynamically to reflect the change. 
 
-I was motivated to create this application because it is important to be able to connect data stored in a database with the front end of a website, while organizing the data using object-relational mapping. One does this to make the data easily interpreted and utilized by the front end so it can be displayed for the end user (consumer).
+I was motivated to create this application because it is a great way to put all my learning up to this point into action on something that is ubiquitous in internet life: posting and commenting. This functionality is the throughline of all social media sites, as well as other sectors such as travel, dining, and commerce. Anywhere where people are sharing their opinions about something publicly (e.g., reviews, blogs, etc.) and commenting on the thoughts of others, this functionality is required to allow for that discourse. With how common this type of web application is in our society, it is very likely that I will work on something similar in my career as a web developer. Therefore this project was a great way to put my skills to the test and add a highly relevant project to my portfolio.
 
-Through working on this project, I have learned how to use Sequelize and dotenv to connect an Express API to a MySQL database and create Models for SQL tables within JavaScript. Some of the biggest points of learning include:
 
-* Using Sequelize to setup a connection between an Express API and a MySQL database
-* Storing sensitive login information in a .env file via environment variables
-* Setting up Models with Sequelize in order to create columns and data validation for each MySQL Table
-* Leveraging Model methods to perform CRUD actions on tables (Create, Read, Update, Delete)
-* Async/Await structure to allow functions/queries to run asynchronously
-* Establishing One-to-One, One-to-Many, and Many-to-Many relationships between Models using foreign keys
-* Performing a JOIN to include associated relational data when executing a GET request
+Through working on this project, I learned a lot about utilizing the MVP framework to build a robust and dynamic full-stack application with a polished front end and comprehensive back end. Some of the biggest points of learning include:
+* Authentication, sessions, and cookies
+* Adding a date_created column to models by setting the default value to be the current date/time
+* Creating custom helper functions to format dates and names as desired
+* Establishing relationships between models using foreign keys to bring in pertinent related information through nested 'include' calls in a given query
+* Utilizing POST, PUT, and DELETE routes to edit the data stored in the database
+* Using a GET fetch prior to a PUT fetch, in order to display for the user what they currently have saved, making the process of updating data easier and smoother
+* Leveraging the ability to store information about the user in the session data
+* Taking advantage of the flexibility of handlebars to serve up different HTML templates with variable data depending on the situation
+* Strategically toggling CSS display: none; rule on HTML elements at certain times to hide or unhide features, making the interface easier for users to navigate
 
 ## Table of Contents
         
-- [Installation](#installation)
+- [Installation](#installation-if-you-would-like-to-clone-the-repo-and-work-from-the-backend-otherwise-simply-visit-the-deployed-application)
 - [Usage](#usage)
+- [Link to Deployed Application](#link-to-deployed-application)
 - [Credits](#credits)
 - [License](#license)
 - [Contributing](#contributing)
 - [Tests](#tests)
 - [Questions](#questions)
  
-## Installation
+## Installation (if you would like to clone the repo and work from the backend; otherwise simply [visit the deployed application](https://shrouded-gorge-55801.herokuapp.com/)) 
             
 1. Install Node.js
     - [Download Version 16 of Node.js](https://nodejs.org/download/release/v16.18.0/node-v16.18.0-x64.msi)
@@ -42,7 +45,7 @@ Through working on this project, I have learned how to use Sequelize and dotenv 
    ```
 4. Create a .env file with the following information
    ```sh
-   DB_NAME='ecommerce_db'
+   DB_NAME='blog_db'
    DB_USER='root'
    DB_PASSWORD='your MySQL password here'
    ```
@@ -59,24 +62,26 @@ Through working on this project, I have learned how to use Sequelize and dotenv 
    ```sh
    npm start
    ```
+8. Open the site on your local host (e.g., http://localhost:3001/)
     
 ## Usage
     
-The Tech Blog project functions as a command-line application. After following the installation instructions above, the server will be running and users can test the API endpoints via Insomnia to see the JSON responses they generate. These responses will either contain formatted JSON objects of all the data associated with the call that is stored in the MySQL database (GET requests), or confirmation messages of the completed POST, PUT, or DELETE actions. 
+The Tech Blog project functions in two primary modes: browsing for the general user, and then a more interactive experience for users who have created an account and logged in. Without logging in, a user can see all the blogs currently posted, or see an individual blog page with associated comments. Each page/view sends a specific query to a MySQL database through sequelize and serves the results to the corresponding handlebars view for that page. A logged in user has the ability to create their own blog posts or comment on others' posts. New posts and comments are stored in the database via POST routes, and will therefore persist across multiple sessions. The user also has the ability to edit or remove their data stored in the database through PUT and DELETE routes, respectively. For an individual blog page will render the buttons to edit or remove a comment only for comments that the logged in user has made. This prevents users from editing the comments of other users. On a user's Dashboard, all posts that the user has written are displayed, and there is a button to create a new post. When that button is clicked on, the form to create a new post is un-hidden from view so that the user can input the required information. Finally, when a user wants to edit a post or comment and clicks on the Update button, the text they have currently saved for that post/comment is rendered in the textbox(es) so that a user can more easily see what they already have written before editing. 
 
-### --- Video demonstration of application's functionality ---
-
-Please review the [demonstration video](https://drive.google.com/file/d/1s9C0J5U4Zaa1ejMTVhTg4p7wSvJ-G_zW/view) to see how the app functions and experience the user perspective.
+## Link to deployed application
+[https://shrouded-gorge-55801.herokuapp.com/](https://shrouded-gorge-55801.herokuapp.com/)
     
 ## Credits
 
-- Node Packages:
-    - express.js
-    - mysql2
-    - sequelize
-    - dotenv
-- [Professional README Guide, The Full-Stack Blog](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
-- [Best-README-Template, GitHub Repo](https://github.com/othneildrew/Best-README-Template/blob/master/BLANK_README.md)
+Node packages used:
+  - bcrypt
+  - connect-session-sequelize
+  - dotenv
+  - express
+  - express-handlebars
+  - express-session
+  - mysql2
+  - sequelize
 
 ## License
     

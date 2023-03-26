@@ -68,7 +68,6 @@ const updatePost = async (e) => {
     });
 
     if (response.ok) {
-        // submitBtn.textContent = 'Post';
         form.removeEventListener('submit', updatePost);
         form.addEventListener('submit', addPost);
         location.reload();
