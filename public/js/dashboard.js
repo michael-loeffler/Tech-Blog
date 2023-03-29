@@ -5,8 +5,8 @@ let currentPostId;
 const titleField = document.querySelector('#title');
 const contentField = document.querySelector('#content');
 const postRemove = document.getElementsByClassName('postRemove');
-// const postContainer = document.getElementsByClassName('postContainer');
 const submitBtn = document.querySelector('form button');
+// const postContainer = document.getElementsByClassName('postContainer');
 
 const displayNewPostForm = () => {
     form.classList.remove('display-none');
@@ -74,7 +74,7 @@ const updatePost = async (e) => {
     } else {
         alert('Failed to update Post');
     }
-}
+};
 
 
 const deletePost = async (e) => {
@@ -107,7 +107,7 @@ for (var i = 0; i < postRemove.length; i++) {
 
 
 
-
+// -- SAVING FOR POTENTIAL FUTURE UPDATES --//
 
 // for (var i = 0; i < postContainer.length; i++) {
 //     postContainer[i].addEventListener('click', unhideButtons);

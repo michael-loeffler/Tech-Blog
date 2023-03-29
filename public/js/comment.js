@@ -3,7 +3,6 @@ const commentUpdate = document.getElementsByClassName('commentUpdate');
 let currentCommentId;
 const contentField = document.querySelector('#content');
 const commentRemove = document.getElementsByClassName('commentRemove');
-// const commentContainer = document.getElementsByClassName('commentContainer');
 
 const addComment = async (e) => {
     e.preventDefault();
@@ -59,8 +58,7 @@ const updateComment = async (e) => {
     } else {
         alert('Failed to update Comment');
     }
-}
-
+};
 
 const deleteComment = async (e) => {
     const button = e.target;
@@ -91,7 +89,7 @@ for (var i = 0; i < commentRemove.length; i++) {
 
 
 
-
+// -- SAVING FOR POTENTIAL FUTURE UPDATES --//
 
 // for (var i = 0; i < commentContainer.length; i++) {
 //     commentContainer[i].addEventListener('click', unhideButtons);

@@ -2,9 +2,6 @@ const router = require('express').Router();
 const { Comment, Post, User } = require('../../models')
 const withAuth = require('../../utils/auth');
 
-//import sequelize
-const sequelize = require('../../config/connection');
-
 router.post('/', withAuth, async (req, res) => {
   try {
     const postData = await Post.create({
@@ -65,8 +62,6 @@ router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [{ model: Comment, include: [{ model: User, attributes: { exclude: ['password'] } }] }, { model: User, attributes: { exclude: ['password'] } }],
-
-      //order: [['post_name', 'ASC']]
     })
     const posts = postData.map((post) => post.get({ plain: true }))
     res.status(200).json(postData);
@@ -79,8 +74,6 @@ router.get('/:postId', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.postId, {
       include: [{ model: Comment, include: [{ model: User, attributes: { exclude: ['password'] } }] }, { model: User, attributes: { exclude: ['password'] } }],
-
-      //order: [['post_name', 'ASC']]
     })
     const post = postData.get({ plain: true })
     res.status(200).json(post);

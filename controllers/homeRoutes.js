@@ -7,7 +7,6 @@ router.get('/', async (req, res) => {
         const postData = await Post.findAll({
             include: [Comment, User],
             attributes: { exclude: ['password'] },
-            //order: [['post_name', 'ASC']]
         })
         const posts = postData.map((post) => post.get({ plain: true }))
         if (req.session.logged_in) {
@@ -38,7 +37,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    // If the user is already logged in, redirect the request to another route
+    // If the user is already logged in, redirect the request to the dashboard
     if (req.session.logged_in) {
         res.redirect('/dashboard');
         return;
@@ -50,14 +49,12 @@ router.get('/post/:postId', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.postId, {
             include: [{ model: Comment, include: [{ model: User, attributes: { exclude: ['password'] } }] }, { model: User, attributes: { exclude: ['password'] } }],
-
-            //order: [['post_name', 'ASC']]
         })
         const post = postData.get({ plain: true })
 
         post.comments.forEach(comment => {
             if (comment.user_id === req.session.user_id) {
-                comment.yours = true;
+                comment.yours = true; // marks which comments belong to the currently logged in user and uses this information to render UPDATE and DELETE buttons only on those comments
             }
         });
         
