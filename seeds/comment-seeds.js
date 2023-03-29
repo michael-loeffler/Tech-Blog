@@ -2,27 +2,12 @@ const { Comment } = require('../models');
 
 const commentData = [
   {
-    content: 'We like fries!!!!!!!!!',
-    user_id: 1,
-    post_id: 1,
-  },
-  {
-    content: 'Nerrrrrrrrrdddddddddddddddd',
-    user_id: 2,
-    post_id: 3,
-  },
-  {
-    content: 'Thank u daddie',
-    user_id: 3,
-    post_id: 1,
-  },
-  {
-    content: 'Love sharing my doodles with you Bellie!!',
+    content: 'We just went over this in my class! I thought it was really cool. My instructor showed us this really great visualization of the Bubble Sort and it really helped me wrap my head around what what going on: https://algorithm-visualizer.org/brute-force/bubble-sort',
     user_id: 2,
     post_id: 1,
   },
   {
-    content: 'We love the stitch! My brother went to the stitch!!',
+    content: 'Yes, cannot recommend Handlebars enough! It is so much easier to build websites with multiple pages and have the page dynamically adjust to the data you are feeding into it.',
     user_id: 1,
     post_id: 2,
   },
